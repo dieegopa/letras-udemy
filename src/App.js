@@ -19,13 +19,13 @@ function App() {
     const consultarAPILetra = async () => {
       try {
         const { artista, cancion } = busquedaLetra;
-        const url = `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${artista}&q_track=${cancion}&apikey=${process.env.REACT_APP_MUSIC_API_KEY}`;
+        const url = `https://api.musixmatch.com/ws/1.1/track.search?q_artist=${artista}&q_track=${cancion}&apikey=${process.env.REACT_APP_MUSIC_API_KEY}`;
 
         const resultado = await axios(url);
         //console.log(resultado.data.message.body['track_list'][0].track);
         const { track_id } = resultado.data.message.body["track_list"][0].track;
 
-        const url2 = `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${track_id}&apikey=${process.env.REACT_APP_MUSIC_API_KEY}`;
+        const url2 = `https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${track_id}&apikey=${process.env.REACT_APP_MUSIC_API_KEY}`;
         const url3 = `https://theaudiodb.com/api/v1/json/1/search.php?s=${artista}`;
 
         const [letra, informacion] = await Promise.all([
